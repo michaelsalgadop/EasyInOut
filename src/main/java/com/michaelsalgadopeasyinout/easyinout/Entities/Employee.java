@@ -1,8 +1,8 @@
-package com.michaelsalgadopeasyinout.easyinout.Entities;
+package com.michaelsalgadopeasyinout.easyinout.entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -22,6 +22,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -30,10 +31,11 @@ import jakarta.validation.constraints.Size;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @NotBlank(message = "DNI invalido!")
     @Size(min = 9, max = 9, message = "DNI debe tener 9 caracteres")
-    @Column(nullable = false, unique = true)
+    @Pattern(regexp = "^[0-9]{8}[A-Za-z]$", message = "Formato de DNI inválido")
+    @Column(length = 9, nullable = false, unique = true)
     private String dni;
     @NotBlank(message = "Nombre invalido!")
     @Size(min = 2, max = 50, message = "Nombre debe tener entre 2 y 50 caracteres")
@@ -54,16 +56,16 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false) // clave foránea
     private Department department;
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
     @Column(name = "updated_at")
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<TimeRecord> timeRecords = new ArrayList<>();
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<Absence> absences = new ArrayList<>();
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<TimeRecord> timeRecords = new HashSet<>();
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Absence> absences = new HashSet<>();
     @OneToOne(mappedBy="employee")
     private User user;
     public Employee() {
@@ -84,23 +86,25 @@ public class Employee {
     public void setUser(User user) {
         this.user = user;
     }
-    public List<TimeRecord> getTimeRecords() {
+    public Set<TimeRecord> getTimeRecords() {
         return timeRecords;
-    }
-    public void setTimeRecords(List<TimeRecord> timeRecords) {
-        this.timeRecords = timeRecords;
     }
     public void addTimeRecord(TimeRecord timeRecord){
         timeRecords.add(timeRecord);
     }
-    public List<Absence> getAbsences() {
-        return absences;
+    public void removeTimeRecord(TimeRecord timeRecord) {
+        timeRecords.remove(timeRecord);
+        timeRecord.setEmployee(null);
     }
-    public void setAbsences(List<Absence> absences) {
-        this.absences = absences;
+    public Set<Absence> getAbsences() {
+        return absences;
     }
     public void addAbsence(Absence absence){
         absences.add(absence);
+    }
+    public void removeAbsence(Absence absence) {
+        absences.remove(absence);
+        absence.setEmployee(null);
     }
     public long getId() {
         return id;
@@ -159,14 +163,21 @@ public class Employee {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        return id != null && id.equals(employee.id);
     }
-    
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

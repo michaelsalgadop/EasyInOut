@@ -1,7 +1,7 @@
-package com.michaelsalgadopeasyinout.easyinout.Entities;
+package com.michaelsalgadopeasyinout.easyinout.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,23 +16,20 @@ import jakarta.persistence.Table;
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String name;
     private String description;
     @ManyToMany(mappedBy = "roles")
-    List<User> users = new ArrayList<>();;
+    private Set<User> users = new HashSet<>();
     public Rol() {
     }
     public Rol(String name, String description) {
         this.name = name;
         this.description = description;
     }
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
-    }
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
     public void addUser(User user) {
         users.add(user);
@@ -55,5 +52,18 @@ public class Rol {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Rol rol = (Rol) o;
+
+        return id != null && id.equals(rol.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

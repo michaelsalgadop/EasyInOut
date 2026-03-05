@@ -1,7 +1,7 @@
-package com.michaelsalgadopeasyinout.easyinout.Entities;
+package com.michaelsalgadopeasyinout.easyinout.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,8 +25,8 @@ public class Department {
     private String name;
     @Column(length = 500)
     private String description;
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Employee> employees = new ArrayList<>();
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Employee> employees = new HashSet<>();
     
     public Department() {
         // Constructor vacío requerido por JPA
@@ -53,13 +53,14 @@ public class Department {
     public void setDescription(String description) {
         this.description = description;
     }
-    public List<Employee> getEmployees() {
+    public Set<Employee> getEmployees() {
         return employees;
-    }
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
     public void addEmployee(Employee employee) {
         employees.add(employee);
+    }
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
+        employee.setDepartment(null);
     }
 }
