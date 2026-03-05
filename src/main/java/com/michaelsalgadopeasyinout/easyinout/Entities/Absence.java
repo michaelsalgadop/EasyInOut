@@ -1,4 +1,4 @@
-package com.michaelsalgadopeasyinout.easyinout.Entities;
+package com.michaelsalgadopeasyinout.easyinout.entities;
 
 import java.time.LocalDateTime;
 
@@ -25,7 +25,7 @@ import jakarta.persistence.Table;
 public class Absence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; 
+    private Long id; 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false) // clave foránea
     private Employee employee;
@@ -39,8 +39,8 @@ public class Absence {
     private String reason;
     @Enumerated(EnumType.STRING)
     @Column(name="status", nullable = false)
-    private StatusAbsenceType status;
-    @Column(name = "created_at")
+    private AbsenceStatus status;
+    @Column(name = "created_at", updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
     @Column(name = "updated_at")
@@ -55,7 +55,7 @@ public class Absence {
         this.startDatetime = startDatetime;
         this.endDatetime = endDatetime;
         this.reason = reason;
-        this.status = StatusAbsenceType.PENDING;
+        this.status = AbsenceStatus.PENDING;
     }
     public long getId() {
         return id;
@@ -93,23 +93,31 @@ public class Absence {
     public void setReason(String reason) {
         this.reason = reason;
     }
-    public StatusAbsenceType getStatus() {
+    public AbsenceStatus getStatus() {
         return status;
     }
-    public void setStatus(StatusAbsenceType status) {
+    public void setStatus(AbsenceStatus status) {
         this.status = status;
     }
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Absence absence = (Absence) o;
+
+        return id != null && id.equals(absence.id);
     }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    } 
     
 }

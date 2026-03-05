@@ -1,4 +1,4 @@
-package com.michaelsalgadopeasyinout.easyinout.Entities;
+package com.michaelsalgadopeasyinout.easyinout.entities;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +17,7 @@ import jakarta.validation.constraints.NotBlank;
 public abstract class TimeRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
@@ -69,5 +69,19 @@ public abstract class TimeRecord {
 
     public void setCheckOut(LocalDateTime checkOut) {
         this.checkOut = checkOut;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TimeRecord timeRecord = (TimeRecord) o;
+
+        return id != null && id.equals(timeRecord.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

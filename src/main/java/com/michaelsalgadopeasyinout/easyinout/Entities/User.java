@@ -1,8 +1,8 @@
-package com.michaelsalgadopeasyinout.easyinout.Entities;
+package com.michaelsalgadopeasyinout.easyinout.entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -27,7 +27,7 @@ import jakarta.persistence.Table;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)
@@ -37,7 +37,7 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", unique = true, nullable = true)
     private Employee employee;
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
     @Column(name = "updated_at")
@@ -48,7 +48,7 @@ public class User {
     name = "user_roles", 
     joinColumns = @JoinColumn(name = "user_id"), 
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private List<Rol> roles = new ArrayList<>();
+    private Set<Rol> roles = new HashSet<>();
     public User() {
     }
     public User(String username, String password, Employee employee) {
@@ -89,14 +89,32 @@ public class User {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public Set<Rol> getRoles() {
+        return roles;
     }
-    
+    public void addRol(Rol rol) {
+        roles.add(rol);
+        rol.getUsers().add(this);
+    }
+    public void removeRol(Rol rol) {
+        roles.remove(rol);
+        rol.getUsers().remove(this);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return id != null && id.equals(user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    } 
 }
