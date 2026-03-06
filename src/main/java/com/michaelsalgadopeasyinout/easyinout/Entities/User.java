@@ -20,13 +20,23 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    @EqualsAndHashCode.Include
     private Long id;
     @Column(nullable = false, unique = true)
     private String username;
@@ -37,63 +47,25 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", unique = true, nullable = true)
     private Employee employee;
+    @Setter(AccessLevel.NONE)
     @Column(name = "created_at", updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
+    @Setter(AccessLevel.NONE)
     @Column(name = "updated_at")
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
+    @Setter(AccessLevel.NONE)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
     name = "user_roles", 
     joinColumns = @JoinColumn(name = "user_id"), 
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
-    public User() {
-    }
     public User(String username, String password, Employee employee) {
         this.username = username;
         this.password = password;
         this.employee = employee;
-    }
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public boolean isEnabled() {
-        return enabled;
-    }
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-    public Employee getEmployee() {
-        return employee;
-    }
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    public Set<Rol> getRoles() {
-        return roles;
     }
     public void addRol(Rol rol) {
         roles.add(rol);

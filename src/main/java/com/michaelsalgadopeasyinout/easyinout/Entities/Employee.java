@@ -21,13 +21,20 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @NotBlank(message = "DNI invalido!")
     @Size(min = 9, max = 9, message = "DNI debe tener 9 caracteres")
@@ -53,16 +60,16 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false) // clave foránea
     private Department department;
+    @Setter(AccessLevel.NONE)
     @Column(name = "created_at", updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
+    @Setter(AccessLevel.NONE)
     @Column(name = "updated_at")
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
     @OneToOne(mappedBy="employee")
     private User user;
-    public Employee() {
-    }
     public Employee(String dni, String firstName, String lastName, String email, int phone,
             LocalDateTime hireDate, Department department) {
         this.dni = dni;
@@ -72,71 +79,5 @@ public class Employee {
         this.phone = phone;
         this.hireDate = hireDate;
         this.department = department;
-    }
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public String getDni() {
-        return dni;
-    }
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public int getPhone() {
-        return phone;
-    }
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-    public LocalDateTime getHireDate() {
-        return hireDate;
-    }
-    public void setHireDate(LocalDateTime hireDate) {
-        this.hireDate = hireDate;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-    public Department getDepartment() {
-        return department;
-    }
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
     }
 }
