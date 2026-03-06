@@ -105,19 +105,5 @@ public class Absence {
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Absence absence = (Absence) o;
-
-        return id != null && id.equals(absence.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    } 
     
 }

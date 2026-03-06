@@ -1,16 +1,11 @@
 package com.michaelsalgadopeasyinout.easyinout.entities;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -25,8 +20,6 @@ public class Department {
     private String name;
     @Column(length = 500)
     private String description;
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Employee> employees = new HashSet<>();
     
     public Department() {
         // Constructor vacío requerido por JPA
@@ -52,15 +45,5 @@ public class Department {
     }
     public void setDescription(String description) {
         this.description = description;
-    }
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
-    }
-    public void removeEmployee(Employee employee) {
-        employees.remove(employee);
-        employee.setDepartment(null);
     }
 }
