@@ -1,8 +1,6 @@
 package com.michaelsalgadopeasyinout.easyinout.entities;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -17,7 +15,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -62,10 +59,6 @@ public class Employee {
     @Column(name = "updated_at")
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<TimeRecord> timeRecords = new HashSet<>();
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Absence> absences = new HashSet<>();
     @OneToOne(mappedBy="employee")
     private User user;
     public Employee() {
@@ -85,26 +78,6 @@ public class Employee {
     }
     public void setUser(User user) {
         this.user = user;
-    }
-    public Set<TimeRecord> getTimeRecords() {
-        return timeRecords;
-    }
-    public void addTimeRecord(TimeRecord timeRecord){
-        timeRecords.add(timeRecord);
-    }
-    public void removeTimeRecord(TimeRecord timeRecord) {
-        timeRecords.remove(timeRecord);
-        timeRecord.setEmployee(null);
-    }
-    public Set<Absence> getAbsences() {
-        return absences;
-    }
-    public void addAbsence(Absence absence){
-        absences.add(absence);
-    }
-    public void removeAbsence(Absence absence) {
-        absences.remove(absence);
-        absence.setEmployee(null);
     }
     public long getId() {
         return id;
@@ -165,19 +138,5 @@ public class Employee {
     }
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Employee employee = (Employee) o;
-
-        return id != null && id.equals(employee.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }

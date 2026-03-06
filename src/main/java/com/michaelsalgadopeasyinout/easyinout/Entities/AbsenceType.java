@@ -1,16 +1,11 @@
 package com.michaelsalgadopeasyinout.easyinout.entities;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -26,8 +21,6 @@ public class AbsenceType {
     private String description;
     @Column(name = "requires_approval")
     private boolean requiresApproval;
-    @OneToMany(mappedBy = "absenceType", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Absence> absences = new HashSet<>();
     public AbsenceType() {
     }
     
@@ -60,17 +53,5 @@ public class AbsenceType {
     }
     public void setRequiresApproval(boolean requiresApproval) {
         this.requiresApproval = requiresApproval;
-    }
-
-    public Set<Absence> getAbsences() {
-        return absences;
-    }
-    public void addAbsence(Absence absence) {
-        absences.add(absence);
-        absence.setAbsenceType(this);
-    }
-    public void removeAbsence(Absence absence) {
-        absences.remove(absence);
-        absence.setAbsenceType(null);
     }
 }

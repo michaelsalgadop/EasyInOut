@@ -70,18 +70,4 @@ public abstract class TimeRecord {
     public void setCheckOut(LocalDateTime checkOut) {
         this.checkOut = checkOut;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TimeRecord timeRecord = (TimeRecord) o;
-
-        return id != null && id.equals(timeRecord.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
