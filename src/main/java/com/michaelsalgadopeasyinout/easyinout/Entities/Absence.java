@@ -18,13 +18,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "absences")
 public class Absence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id; 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false) // clave foránea
@@ -40,14 +48,14 @@ public class Absence {
     @Enumerated(EnumType.STRING)
     @Column(name="status", nullable = false)
     private AbsenceStatus status;
+    @Setter(AccessLevel.NONE)
     @Column(name = "created_at", updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
+    @Setter(AccessLevel.NONE)
     @Column(name = "updated_at")
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
-    public Absence() {
-    }
     public Absence(Employee employee, AbsenceType absenceType, LocalDateTime startDatetime,
             LocalDateTime endDatetime, String reason) {
         this.employee = employee;
@@ -57,53 +65,4 @@ public class Absence {
         this.reason = reason;
         this.status = AbsenceStatus.PENDING;
     }
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public Employee getEmployee() {
-        return employee;
-    }
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    public AbsenceType getAbsenceType() {
-        return absenceType;
-    }
-    public void setAbsenceType(AbsenceType absenceType) {
-        this.absenceType = absenceType;
-    }
-    public LocalDateTime getStartDatetime() {
-        return startDatetime;
-    }
-    public void setStartDatetime(LocalDateTime startDatetime) {
-        this.startDatetime = startDatetime;
-    }
-    public LocalDateTime getEndDatetime() {
-        return endDatetime;
-    }
-    public void setEndDatetime(LocalDateTime endDatetime) {
-        this.endDatetime = endDatetime;
-    }
-    public String getReason() {
-        return reason;
-    }
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-    public AbsenceStatus getStatus() {
-        return status;
-    }
-    public void setStatus(AbsenceStatus status) {
-        this.status = status;
-    }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    
 }

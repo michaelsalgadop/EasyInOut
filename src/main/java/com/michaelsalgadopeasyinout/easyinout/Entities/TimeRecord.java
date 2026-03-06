@@ -11,12 +11,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "time_records")
 public abstract class TimeRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
@@ -26,48 +33,11 @@ public abstract class TimeRecord {
     private LocalDateTime checkOut;
     private String notes;
 
-    public TimeRecord() {
-    }
-
     public TimeRecord(Employee employee, LocalDateTime checkIn,
             LocalDateTime checkOut, String notes) {
         this.employee = employee;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.notes = notes;
-    }
-
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public Employee getEmployee() {
-        return employee;
-    }
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    public String getNotes() {
-        return notes;
-    }
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-    public LocalDateTime getCheckIn() {
-        return checkIn;
-    }
-
-    public void setCheckIn(LocalDateTime checkIn) {
-        this.checkIn = checkIn;
-    }
-
-    public LocalDateTime getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(LocalDateTime checkOut) {
-        this.checkOut = checkOut;
     }
 }
