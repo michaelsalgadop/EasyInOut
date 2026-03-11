@@ -22,7 +22,6 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
-    @NotBlank(message = "Nombre invalido!")
     @Column(nullable = false, unique = true)
     private String name;
     @Column(length = 500)

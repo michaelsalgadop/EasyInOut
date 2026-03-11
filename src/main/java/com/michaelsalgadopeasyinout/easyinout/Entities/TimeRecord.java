@@ -20,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "time_records")
-public abstract class TimeRecord {
+public class TimeRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -28,7 +28,6 @@ public abstract class TimeRecord {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
-    @NotBlank(message = "Estado inválido!")
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
     private String notes;
