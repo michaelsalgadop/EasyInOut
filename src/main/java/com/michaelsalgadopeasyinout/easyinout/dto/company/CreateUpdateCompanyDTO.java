@@ -1,4 +1,4 @@
-package com.michaelsalgadopeasyinout.easyinout.dto.department;
+package com.michaelsalgadopeasyinout.easyinout.dto.company;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUpdateDepartmentDTO {
-    @NotBlank(message = "Nombre invalido!")
+public class CreateUpdateCompanyDTO {
+    @NotBlank(message = "Nombre de la compañia no especificado")
     private String name;
-    private String description;
-    private Long companyId;
 }

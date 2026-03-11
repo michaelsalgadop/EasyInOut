@@ -12,4 +12,5 @@ import lombok.Setter;
 public class GetShortUserDTO {
     private Long id;
     private String username;
+    private String email;
 }

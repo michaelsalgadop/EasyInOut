@@ -3,7 +3,6 @@ package com.michaelsalgadopeasyinout.easyinout.dto.employee;
 import java.time.LocalDateTime;
 
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -25,9 +24,6 @@ public class UpdateEmployeeDTO {
     private String firstName;
     @NotBlank(message = "Apellido invalido!")
     private String lastName;
-    @NotBlank(message = "Email invalido!")
-    @Email(message = "Email no tiene un formato válido!")
-    private String email;
     private int phone;
     private LocalDateTime hireDate;
     private boolean active;
@@ -35,4 +31,5 @@ public class UpdateEmployeeDTO {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
     private Long userId;
+    private Long companyId;
 }

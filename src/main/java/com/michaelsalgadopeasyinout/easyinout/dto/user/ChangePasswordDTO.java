@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChangePasswordDTO {
+    private Long id;
     @NotBlank(message = "Contraseña invalida!")
     private String oldPassword;
     @NotBlank(message = "Contraseña invalida!")

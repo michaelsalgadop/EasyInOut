@@ -30,7 +30,6 @@ import lombok.Setter;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id;
     @Column(length = 9, nullable = false, unique = true)
     private String dni;
@@ -38,8 +37,6 @@ public class Employee {
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(nullable = false, unique = true)
-    private String email;
     private int phone;
     @Column(name = "hire_date")
     private LocalDateTime hireDate;
@@ -58,14 +55,17 @@ public class Employee {
 	private LocalDateTime updatedAt;
     @OneToOne(mappedBy="employee")
     private User user;
-    public Employee(String dni, String firstName, String lastName, String email, int phone,
-            LocalDateTime hireDate, Department department) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
+    public Employee(String dni, String firstName, String lastName, int phone,
+            LocalDateTime hireDate, Department department, Company company) {
         this.dni = dni;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
         this.phone = phone;
         this.hireDate = hireDate;
         this.department = department;
+        this.company = company;
     }
 }
