@@ -17,10 +17,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,20 +32,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
-    @NotBlank(message = "DNI invalido!")
-    @Size(min = 9, max = 9, message = "DNI debe tener 9 caracteres")
-    @Pattern(regexp = "^[0-9]{8}[A-Za-z]$", message = "Formato de DNI inválido")
     @Column(length = 9, nullable = false, unique = true)
     private String dni;
-    @NotBlank(message = "Nombre invalido!")
-    @Size(min = 2, max = 50, message = "Nombre debe tener entre 2 y 50 caracteres")
     @Column(name = "first_name", nullable = false)
     private String firstName;
-    @NotBlank(message = "Apellido invalido!")
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @NotBlank(message = "Email invalido!")
-    @Email(message = "Email no tiene un formato válido!")
     @Column(nullable = false, unique = true)
     private String email;
     private int phone;

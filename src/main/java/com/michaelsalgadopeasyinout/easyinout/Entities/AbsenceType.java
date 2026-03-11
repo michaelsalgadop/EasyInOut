@@ -22,16 +22,14 @@ public class AbsenceType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
-    @NotBlank(message = "Nombre invalido!")
     @Column(nullable = false, unique = true)
     private String name;
     private String description;
     @Column(name = "requires_approval")
-    private boolean requiresApproval;
+    private boolean requiresApproval = false;
     
     public AbsenceType(String name, String description) {
         this.name = name;
         this.description = description;
-        this.requiresApproval = false;
     }
 }

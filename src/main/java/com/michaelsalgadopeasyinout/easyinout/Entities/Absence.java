@@ -42,12 +42,12 @@ public class Absence {
     private AbsenceType absenceType;
     @Column(name = "start_datetime", nullable = false)
     private LocalDateTime startDatetime;
-    @Column(name = "end_datetime", nullable = false)
+    @Column(name = "end_datetime")
     private LocalDateTime endDatetime;
     private String reason;
     @Enumerated(EnumType.STRING)
     @Column(name="status", nullable = false)
-    private AbsenceStatus status;
+    private AbsenceStatus status = AbsenceStatus.PENDING;
     @Setter(AccessLevel.NONE)
     @Column(name = "created_at", updatable = false)
 	@CreatedDate
@@ -63,6 +63,5 @@ public class Absence {
         this.startDatetime = startDatetime;
         this.endDatetime = endDatetime;
         this.reason = reason;
-        this.status = AbsenceStatus.PENDING;
     }
 }
