@@ -2,6 +2,7 @@ package com.michaelsalgadopeasyinout.easyinout.dto.employee;
 
 import java.time.LocalDateTime;
 
+import com.michaelsalgadopeasyinout.easyinout.dto.company.GetCompanyDTO;
 import com.michaelsalgadopeasyinout.easyinout.dto.department.GetDepartmentDTO;
 import com.michaelsalgadopeasyinout.easyinout.dto.user.GetShortUserDTO;
 
@@ -17,10 +18,10 @@ public class GetFullEmployeeDTO {
     private Long id;
     private String firstName;
     private String lastName;
-    private String email;
     private int phone;
     private LocalDateTime hireDate;
     private boolean active;
     private GetDepartmentDTO department;
     private GetShortUserDTO user;
+    private GetCompanyDTO company;
 }

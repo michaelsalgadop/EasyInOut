@@ -18,6 +18,7 @@ import lombok.Setter;
 public class GetFullUserDTO {
     private Long id;
     private String username;
+    private String email;
     private GetShortEmployeeDTO employee;
     private boolean enabled;
     private LocalDateTime createdAt;
