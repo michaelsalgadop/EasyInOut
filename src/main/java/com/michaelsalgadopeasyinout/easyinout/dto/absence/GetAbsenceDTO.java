@@ -2,7 +2,7 @@ package com.michaelsalgadopeasyinout.easyinout.dto.absence;
 
 import java.time.LocalDateTime;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.absenceType.GetAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.GetAbsenceTypeDTO;
 import com.michaelsalgadopeasyinout.easyinout.dto.employee.GetShortEmployeeDTO;
 import com.michaelsalgadopeasyinout.easyinout.entities.AbsenceStatus;
 

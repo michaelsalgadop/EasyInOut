@@ -1,4 +1,4 @@
-package com.michaelsalgadopeasyinout.easyinout.dto.timeRecord;
+package com.michaelsalgadopeasyinout.easyinout.dto.timerecord;
 
 import java.time.LocalDateTime;
 

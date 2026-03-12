@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.michaelsalgadopeasyinout.easyinout.dto.employee.GetShortEmployeeDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.rol.RolGetDTO;
+import com.michaelsalgadopeasyinout.easyinout.dto.rol.GetRolDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,5 +23,5 @@ public class GetFullUserDTO {
     private boolean enabled;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Set<RolGetDTO> roles;
+    private Set<GetRolDTO> roles;
 }

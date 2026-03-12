@@ -1,4 +1,4 @@
-package com.michaelsalgadopeasyinout.easyinout.dto.absenceType;
+package com.michaelsalgadopeasyinout.easyinout.dto.absencetype;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
