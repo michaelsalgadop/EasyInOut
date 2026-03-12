@@ -1,4 +1,4 @@
-package com.michaelsalgadopeasyinout.easyinout.dto.absenceType;
+package com.michaelsalgadopeasyinout.easyinout.dto.absencetype;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
