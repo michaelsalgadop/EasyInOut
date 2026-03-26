@@ -2,10 +2,10 @@ package com.michaelsalgadopeasyinout.easyinout.services.user;
 
 import java.util.List;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.user.CreateUserDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.user.GetFullUserDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.user.GetShortUserDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.user.UpdateUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.CreateUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.GetFullUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.GetShortUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.UpdateUserDTO;
 
 public interface IUserService {
     List<GetShortUserDTO> getUsers();

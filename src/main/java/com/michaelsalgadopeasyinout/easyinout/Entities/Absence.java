@@ -55,8 +55,9 @@ public class Absence {
     @Column(name = "updated_at")
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
-    public Absence(Employee employee, AbsenceType absenceType, LocalDateTime startDatetime,
+    public Absence(Long id, Employee employee, AbsenceType absenceType, LocalDateTime startDatetime,
             LocalDateTime endDatetime, String reason) {
+        this.id = id;
         this.employee = employee;
         this.absenceType = absenceType;
         this.startDatetime = startDatetime;

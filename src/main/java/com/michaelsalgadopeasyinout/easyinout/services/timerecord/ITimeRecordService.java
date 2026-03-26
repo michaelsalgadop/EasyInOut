@@ -2,8 +2,8 @@ package com.michaelsalgadopeasyinout.easyinout.services.timerecord;
 
 import java.util.List;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.timerecord.CreateUpdateTimeRecordDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.timerecord.GetTimeRecordDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.CreateUpdateTimeRecordDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.GetTimeRecordDTO;
 
 public interface ITimeRecordService {
     List<GetTimeRecordDTO> getTimeRecordsByEmployee(Long id);

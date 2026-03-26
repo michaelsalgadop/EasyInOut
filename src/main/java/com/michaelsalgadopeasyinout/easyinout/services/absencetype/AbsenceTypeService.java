@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.CreateAbsenceTypeDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.GetAbsenceTypeDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.UpdateAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.absencetype.CreateAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.absencetype.GetAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.absencetype.UpdateAbsenceTypeDTO;
 
 @Service
 public class AbsenceTypeService implements IAbsenceTypeService{
