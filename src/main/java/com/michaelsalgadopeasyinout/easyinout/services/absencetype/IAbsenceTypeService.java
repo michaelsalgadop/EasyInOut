@@ -2,9 +2,9 @@ package com.michaelsalgadopeasyinout.easyinout.services.absencetype;
 
 import java.util.List;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.CreateAbsenceTypeDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.GetAbsenceTypeDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.absencetype.UpdateAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.absencetype.CreateAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.absencetype.GetAbsenceTypeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.absencetype.UpdateAbsenceTypeDTO;
 
 public interface IAbsenceTypeService {
     List<GetAbsenceTypeDTO> getAbsenceTypes();

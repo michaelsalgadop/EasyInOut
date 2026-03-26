@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.timerecord.CreateUpdateTimeRecordDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.timerecord.GetTimeRecordDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.CreateUpdateTimeRecordDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.GetTimeRecordDTO;
 
 @Service
 public class TimeRecordService implements ITimeRecordService{

@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.department.CreateUpdateDepartmentDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.department.GetDepartmentDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.department.CreateDepartmentDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.department.GetDepartmentDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.department.UpdateDepartmentDTO;
 
 @Service
 public class DepartmentService implements IDepartmentService {
@@ -23,13 +24,13 @@ public class DepartmentService implements IDepartmentService {
     }
 
     @Override
-    public GetDepartmentDTO createDepartment(CreateUpdateDepartmentDTO departmentDTO) {
+    public GetDepartmentDTO createDepartment(CreateDepartmentDTO departmentDTO) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createDepartment'");
     }
 
     @Override
-    public GetDepartmentDTO updateDepartment(Long id, CreateUpdateDepartmentDTO departmentDTO) {
+    public GetDepartmentDTO updateDepartment(Long id, UpdateDepartmentDTO departmentDTO) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateDepartment'");
     }

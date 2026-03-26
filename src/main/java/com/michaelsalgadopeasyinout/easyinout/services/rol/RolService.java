@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.rol.CreateUpdateRolDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.rol.GetRolDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.rol.CreateRolDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.rol.GetRolDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.rol.UpdateRolDTO;
 
 @Service
 public class RolService implements IRoleService{
@@ -23,13 +24,13 @@ public class RolService implements IRoleService{
     }
 
     @Override
-    public GetRolDTO createRol(CreateUpdateRolDTO rolDTO) {
+    public GetRolDTO createRol(CreateRolDTO rolDTO) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createRol'");
     }
 
     @Override
-    public GetRolDTO updateRol(Long id, CreateUpdateRolDTO rolDTO) {
+    public GetRolDTO updateRol(Long id, UpdateRolDTO rolDTO) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateRol'");
     }

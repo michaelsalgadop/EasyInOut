@@ -2,16 +2,17 @@ package com.michaelsalgadopeasyinout.easyinout.services.company;
 
 import java.util.List;
 
-import com.michaelsalgadopeasyinout.easyinout.dto.company.CreateUpdateCompanyDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.company.GetCompanyDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.department.GetDepartmentDTO;
-import com.michaelsalgadopeasyinout.easyinout.dto.employee.GetShortEmployeeDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.company.CreateCompanyDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.company.GetCompanyDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.company.UpdateCompanyDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.department.GetDepartmentDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.employee.GetShortEmployeeDTO;
 
 public interface ICompanyService {
     List<GetCompanyDTO> getCompanies();
     GetCompanyDTO getCompanyById(Long id);
-    GetCompanyDTO createCompany(CreateUpdateCompanyDTO companyDTO);
-    GetCompanyDTO updateCompany(Long id, CreateUpdateCompanyDTO companyDTO);
+    GetCompanyDTO createCompany(CreateCompanyDTO companyDTO);
+    GetCompanyDTO updateCompany(Long id, UpdateCompanyDTO companyDTO);
     void deleteCompany(Long id);
     List<GetShortEmployeeDTO> getEmployeesByIdCompany(Long id);
     List<GetDepartmentDTO> getDepartmentsByIdCompany(Long id);
