@@ -12,4 +12,5 @@ public interface IDepartmentService {
     GetDepartmentDTO createDepartment(CreateDepartmentDTO departmentDTO);
     GetDepartmentDTO updateDepartment(Long id, UpdateDepartmentDTO departmentDTO);
     void deleteDepartment(Long id);
+    List<GetDepartmentDTO> getDepartmentsByIdCompany(Long idCompany);
 }

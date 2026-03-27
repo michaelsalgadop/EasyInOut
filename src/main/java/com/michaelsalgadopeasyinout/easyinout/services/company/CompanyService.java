@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.michaelsalgadopeasyinout.easyinout.dtos.company.CreateCompanyDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.company.GetCompanyDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.company.UpdateCompanyDTO;
-import com.michaelsalgadopeasyinout.easyinout.dtos.department.GetDepartmentDTO;
-import com.michaelsalgadopeasyinout.easyinout.dtos.employee.GetShortEmployeeDTO;
 import com.michaelsalgadopeasyinout.easyinout.entities.Company;
 import com.michaelsalgadopeasyinout.easyinout.exceptions.BusinessException;
 import com.michaelsalgadopeasyinout.easyinout.exceptions.NotFoundException;
@@ -50,20 +48,7 @@ public class CompanyService implements ICompanyService{
 
     @Override
     public void deleteCompany(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCompany'");
+        var company = repository.findById(id).orElseThrow(() -> new NotFoundException("Compañía no encontrada."));
+        repository.delete(company);
     }
-
-    @Override
-    public List<GetShortEmployeeDTO> getEmployeesByIdCompany(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmployeesByIdCompany'");
-    }
-
-    @Override
-    public List<GetDepartmentDTO> getDepartmentsByIdCompany(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDepartmentsByIdCompany'");
-    }
-
 }
