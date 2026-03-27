@@ -13,4 +13,5 @@ public interface IEmployeeService {
     GetShortEmployeeDTO createEmployee(CreateEmployeeDTO employeeDTO);
     GetShortEmployeeDTO updateEmployee(Long id, UpdateEmployeeDTO employeeDTO);
     void deleteEmployee(Long id);
+    List<GetShortEmployeeDTO> getEmployeesByIdCompany(Long idCompany);
 }

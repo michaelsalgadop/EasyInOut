@@ -3,6 +3,7 @@ package com.michaelsalgadopeasyinout.easyinout.dtos.department;
 import com.michaelsalgadopeasyinout.easyinout.dtos.company.GetCompanyDTO;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class GetDepartmentDTO {
     private Long id;
     private String name;
