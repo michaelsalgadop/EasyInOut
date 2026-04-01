@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUpdateTimeRecordDTO {
+public class CreateTimeRecordDTO {
     private Long idEmployee;
     @NotBlank(message = "Estado inválido!")
     private LocalDateTime checkIn;

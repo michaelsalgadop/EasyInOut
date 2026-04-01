@@ -10,12 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "time_records")
 public class TimeRecord {
@@ -29,8 +31,9 @@ public class TimeRecord {
     private LocalDateTime checkOut;
     private String notes;
 
-    public TimeRecord(Employee employee, LocalDateTime checkIn,
+    public TimeRecord(Long id, Employee employee, LocalDateTime checkIn,
             LocalDateTime checkOut, String notes) {
+        this.id = id;
         this.employee = employee;
         this.checkIn = checkIn;
         this.checkOut = checkOut;

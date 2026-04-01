@@ -7,7 +7,7 @@ import com.michaelsalgadopeasyinout.easyinout.dtos.absence.GetAbsenceDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.absence.UpdateAbsenceDTO;
 
 public interface IAbsenceService {
-    List<GetAbsenceDTO> getAbsences();
+    List<GetAbsenceDTO> getAbsencesByIdEmployee(Long idEmployee);
     GetAbsenceDTO getAbsenceById(Long id);
     GetAbsenceDTO createAbsence(CreateAbsenceDTO absenceDTO);
     GetAbsenceDTO updateAbsence(Long id, UpdateAbsenceDTO absenceDTO);

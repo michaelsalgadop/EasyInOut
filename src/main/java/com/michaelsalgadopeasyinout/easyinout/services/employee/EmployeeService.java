@@ -56,7 +56,7 @@ public class EmployeeService implements IEmployeeService{
         if (!companyRepository.existsById(idCompany)) {
             throw new NotFoundException("Empresa no existe!");
         }
-        return repository.findByIdCompany(idCompany).stream().map(EmployeeMapper::getShortEmployeeDTO).toList();
+        return repository.findByIdCompany(idCompany).stream().map(EmployeeMapper::toShortEmployeeDTO).toList();
     }
 
 }

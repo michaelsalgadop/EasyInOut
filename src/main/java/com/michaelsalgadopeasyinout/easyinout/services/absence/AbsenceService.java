@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.michaelsalgadopeasyinout.easyinout.dtos.absence.CreateAbsenceDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.absence.GetAbsenceDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.absence.UpdateAbsenceDTO;
+import com.michaelsalgadopeasyinout.easyinout.mappers.AbsenceMapper;
 import com.michaelsalgadopeasyinout.easyinout.repositories.AbsenceRepository;
 
 @Service
@@ -17,9 +18,8 @@ public class AbsenceService implements IAbsenceService {
     private AbsenceRepository repository;
 
     @Override
-    public List<GetAbsenceDTO> getAbsences() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAbsenceById'");
+    public List<GetAbsenceDTO> getAbsencesByIdEmployee(Long idEmployee) {
+        return repository.findByIdEmployee(idEmployee).stream().map(AbsenceMapper::toDTO).toList();
     }
 
     @Override

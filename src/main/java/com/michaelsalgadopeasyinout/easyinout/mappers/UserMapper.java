@@ -1,14 +1,20 @@
 package com.michaelsalgadopeasyinout.easyinout.mappers;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.michaelsalgadopeasyinout.easyinout.dtos.rol.GetRolDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.CreateUserDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.user.GetFullUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.GetShortUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.user.UpdateUserDTO;
+import com.michaelsalgadopeasyinout.easyinout.entities.Employee;
+import com.michaelsalgadopeasyinout.easyinout.entities.Rol;
 import com.michaelsalgadopeasyinout.easyinout.entities.User;
 import com.michaelsalgadopeasyinout.easyinout.exceptions.NotFoundException;
 
 public class UserMapper {
-    public static GetFullUserDTO getFullUserDTO (User user) {
+    public static GetFullUserDTO toFullUserDTO (User user) {
         if (user == null) {
             return null;
         }
@@ -19,19 +25,54 @@ public class UserMapper {
             .description(rol.getDescription())
             .build()
         ).collect(Collectors.toUnmodifiableSet());
-        var employee = EmployeeMapper.getShortEmployeeDTO(user.getEmployee());
+        var employee = EmployeeMapper.toShortEmployeeDTO(user.getEmployee());
         if (employee == null) {
             throw new NotFoundException("Empleado no encontrado");            
         }
         return GetFullUserDTO.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .email(user.getEmail())
-                .employee(employee)
-                .enabled(user.isEnabled())
-                .createdAt(user.getCreatedAt())
-                .updatedAt(user.getUpdatedAt())
-                .roles(roles)
-                .build();
+            .id(user.getId())
+            .username(user.getUsername())
+            .email(user.getEmail())
+            .employee(employee)
+            .enabled(user.isEnabled())
+            .createdAt(user.getCreatedAt())
+            .updatedAt(user.getUpdatedAt())
+            .roles(roles)
+            .build();
+    }
+    public static GetShortUserDTO toShortUserDTO (User user) {
+        if (user == null) {
+            return null;
+        }
+        return GetShortUserDTO.builder()
+            .id(user.getId())
+            .username(user.getUsername())
+            .email(user.getEmail())
+            .build();
+    }
+    public static User toEntity (CreateUserDTO user, Employee employee, Set<Rol> roles) {
+        if (user == null) {
+            return null;
+        }
+        return User.builder()
+            .username(user.getUsername())
+            .email(user.getEmail())
+            .password(user.getPassword())
+            .employee(employee)
+            .roles(roles)
+            .build();
+    }
+    public static User toEntity (UpdateUserDTO user, Employee employee, Set<Rol> roles) {
+        if (user == null) {
+            return null;
+        }
+        return User.builder()
+            .id(user.getId())
+            .username(user.getUsername())
+            .email(user.getEmail())            
+            .employee(employee)
+            .roles(roles)
+            .enabled(user.isEnabled())
+            .build();
     }
 }

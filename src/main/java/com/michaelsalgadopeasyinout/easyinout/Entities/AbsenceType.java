@@ -7,12 +7,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "absence_types")
 public class AbsenceType {
@@ -24,9 +28,4 @@ public class AbsenceType {
     private String description;
     @Column(name = "requires_approval")
     private boolean requiresApproval = false;
-    
-    public AbsenceType(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 }
