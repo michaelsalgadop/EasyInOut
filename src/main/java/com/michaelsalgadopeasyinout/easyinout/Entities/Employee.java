@@ -18,12 +18,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "employees")
@@ -58,14 +62,4 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
-    public Employee(String dni, String firstName, String lastName, int phone,
-            LocalDateTime hireDate, Department department, Company company) {
-        this.dni = dni;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.hireDate = hireDate;
-        this.department = department;
-        this.company = company;
-    }
 }

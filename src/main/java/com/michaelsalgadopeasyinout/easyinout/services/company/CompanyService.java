@@ -20,12 +20,12 @@ public class CompanyService implements ICompanyService{
     private  CompanyRepository repository;
     @Override
     public List<GetCompanyDTO> getCompanies() {
-        return repository.findAll().stream().map(CompanyMapper::getCompanyDTO).toList();
+        return repository.findAll().stream().map(CompanyMapper::toDTO).toList();
     }
 
     @Override
     public GetCompanyDTO getCompanyById(Long id) {
-        return repository.findById(id).map(CompanyMapper::getCompanyDTO).orElseThrow(() -> new NotFoundException("Compañia no encontrada"));
+        return repository.findById(id).map(CompanyMapper::toDTO).orElseThrow(() -> new NotFoundException("Compañia no encontrada"));
     }
 
     @Override
@@ -36,14 +36,14 @@ public class CompanyService implements ICompanyService{
         var company =   Company.builder()
                         .name(companyDTO.getName())
                         .build();
-        return CompanyMapper.getCompanyDTO(repository.save(company));
+        return CompanyMapper.toDTO(repository.save(company));
     }
 
     @Override
     public GetCompanyDTO updateCompany(Long id, UpdateCompanyDTO companyDTO) {
         var company = repository.findById(id).orElseThrow(() -> new NotFoundException("Compañía no encontrada."));
         company.setName(companyDTO.getName());
-        return CompanyMapper.getCompanyDTO(repository.save(company));
+        return CompanyMapper.toDTO(repository.save(company));
     }
 
     @Override

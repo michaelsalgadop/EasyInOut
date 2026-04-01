@@ -19,6 +19,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,8 +28,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 @Table(name = "absences")
 public class Absence {
     @Id
@@ -54,14 +58,5 @@ public class Absence {
     @Setter(AccessLevel.NONE)
     @Column(name = "updated_at")
 	@LastModifiedDate
-	private LocalDateTime updatedAt;
-    public Absence(Long id, Employee employee, AbsenceType absenceType, LocalDateTime startDatetime,
-            LocalDateTime endDatetime, String reason) {
-        this.id = id;
-        this.employee = employee;
-        this.absenceType = absenceType;
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.reason = reason;
-    }
+	private LocalDateTime updatedAt; 
 }

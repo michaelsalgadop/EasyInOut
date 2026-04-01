@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.CreateUpdateTimeRecordDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.CreateTimeRecordDTO;
 import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.GetTimeRecordDTO;
+import com.michaelsalgadopeasyinout.easyinout.dtos.timerecord.UpdateTimeRecordDTO;
 
 @Service
 public class TimeRecordService implements ITimeRecordService{
@@ -23,13 +24,13 @@ public class TimeRecordService implements ITimeRecordService{
     }
 
     @Override
-    public GetTimeRecordDTO createTimeRecord(CreateUpdateTimeRecordDTO timeRecordDTO) {
+    public GetTimeRecordDTO createTimeRecord(CreateTimeRecordDTO timeRecordDTO) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createTimeRecord'");
     }
 
     @Override
-    public GetTimeRecordDTO updateTimeRecord(Long id, CreateUpdateTimeRecordDTO timeRecordDTO) {
+    public GetTimeRecordDTO updateTimeRecord(Long id, UpdateTimeRecordDTO timeRecordDTO) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateTimeRecord'");
     }

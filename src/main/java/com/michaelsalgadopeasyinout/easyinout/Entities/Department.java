@@ -10,12 +10,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "departments")
 public class Department {
@@ -29,9 +33,4 @@ public class Department {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
-    public Department(String name, String description, Company company) {
-        this.name = name;
-        this.description = description;
-        this.company = company;
-    }
 }

@@ -15,6 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateUserDTO {
+    private Long id;
     @NotBlank(message = "Usuario no válido")
     @Size(max = 15, message = "El nombre de usuario debe tener máximo 15 carácteres")
     private String username;

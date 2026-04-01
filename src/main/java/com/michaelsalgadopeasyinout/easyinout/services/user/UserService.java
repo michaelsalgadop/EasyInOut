@@ -45,7 +45,7 @@ public class UserService implements IUserService{
 
     @Override
     public GetFullUserDTO getUserById(Long id) {
-       return repository.findById(id).map(UserMapper::getFullUserDTO).orElseThrow(() -> new NotFoundException("Usuario no encontrado"));
+       return repository.findById(id).map(UserMapper::toFullUserDTO).orElseThrow(() -> new NotFoundException("Usuario no encontrado"));
     }
 
 }

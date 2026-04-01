@@ -54,7 +54,7 @@ public class DepartmentService implements IDepartmentService {
         if (!companyRepository.existsById(idCompany)) {
             throw new NotFoundException("Empresa no encontrada");   
         }
-        return repository.findByIdCompany(idCompany).stream().map(DepartmentMapper::getDepartmentDTO).toList();
+        return repository.findByIdCompany(idCompany).stream().map(DepartmentMapper::toDTO).toList();
     }
 
 }

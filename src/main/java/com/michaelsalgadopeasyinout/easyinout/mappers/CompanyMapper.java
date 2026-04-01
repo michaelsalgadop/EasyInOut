@@ -7,24 +7,24 @@ import com.michaelsalgadopeasyinout.easyinout.entities.Company;
 
 public class CompanyMapper {
     // Mapeo de Empresa al Get de empresas para devolver los datos que queremos.
-    public static GetCompanyDTO getCompanyDTO(Company company){
+    public static GetCompanyDTO toDTO(Company company){
         if (company == null) {
             return null;
         }
         return GetCompanyDTO.builder().id(company.getId()).name(company.getName()).build();
     }
-    // Mapeo de Empresa a su DTO preparado para crear
-    public static CreateCompanyDTO createCompanyDTO(Company company){
-        if (company == null) {
+    // Mapeo de DTO a su Entidad preparado para crear
+    public static Company toEntity(CreateCompanyDTO dto){
+        if (dto == null) {
             return null;
         }
-        return CreateCompanyDTO.builder().name(company.getName()).build();
+        return Company.builder().name(dto.getName()).build();
     }
-    // Mapeo de Empresa a su DTO preparado para modificar
-    public static UpdateCompanyDTO updateCompanyDTO(Company company){
-        if (company == null) {
+    // Mapeo de DTO a su Entidad preparado para modificar
+    public static Company toEntity(UpdateCompanyDTO dto){
+        if (dto == null) {
             return null;
         }
-        return UpdateCompanyDTO.builder().id(company.getId()).name(company.getName()).build();
+        return Company.builder().id(dto.getId()).name(dto.getName()).build();
     }
 }
